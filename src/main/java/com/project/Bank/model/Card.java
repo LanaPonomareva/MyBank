@@ -1,7 +1,7 @@
 package com.project.Bank.model;
 
-import com.project.Bank.enums.CardCondition;
-import com.project.Bank.enums.CardName;
+import com.project.Bank.model.enums.CardCondition;
+import com.project.Bank.model.enums.CardName;
 
 import java.util.Objects;
 
@@ -11,6 +11,9 @@ public class Card {
     private long number;
     private CardCondition cardCondition;
     private long accountId;
+
+    public Card() {
+    }
 
     public Card(long id, CardName cardName, long number, CardCondition cardCondition, long accountId) {
         this.id = id;

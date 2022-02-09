@@ -1,8 +1,6 @@
-import busnessLogic.ConnectionManager;
+package com.project.Bank;
 
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.project.Bank.busnessLogic.ConnectionManager;
 
 public class MainClass {
     public static void main(String[] args) {

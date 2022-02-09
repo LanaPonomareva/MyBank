@@ -1,6 +1,6 @@
 package com.project.Bank.model;
 
-import com.project.Bank.enums.Role;
+import com.project.Bank.model.enums.Role;
 
 import java.util.Objects;
 
@@ -12,6 +12,9 @@ public class User {
     private String password;
     private boolean isActive;
     private Role role;
+
+    public User() {
+    }
 
     public User(long id, String firstName, String lastName, String email, String password, boolean isActive, Role role) {
         this.id = id;

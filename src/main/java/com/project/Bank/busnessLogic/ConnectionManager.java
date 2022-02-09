@@ -1,10 +1,11 @@
-package busnessLogic;
+package com.project.Bank.busnessLogic;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
+
     private static final String DB_DRIVER = "org.postgresql.Driver";
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASSWORD = "11111111";

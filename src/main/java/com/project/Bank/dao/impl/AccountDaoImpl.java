@@ -1,24 +1,29 @@
-package service;
+package com.project.Bank.dao.impl;
 
-import busnessLogic.ConnectionManager;
+import com.project.Bank.busnessLogic.ConnectionManager;
+import com.project.Bank.exception.DAOException;
 import com.project.Bank.model.Account;
-import dao.AccountDAO;
-
+import com.project.Bank.dao.AccountDAO;
+import org.slf4j.LoggerFactory;
+/*
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
 
-public class AccountService extends ConnectionManager implements AccountDAO {
+public class AccountDaoImpl extends ConnectionManager implements AccountDAO {
     Connection connection = getConnection();
-    private static final String COLUMN_ID = "id";
-    private static final String COLUMN_NUMBER = "number";
-    private static final String COLUMN_BALANCE = "balance";
-    private static final String COLUMN_IS_ACTIVE = "isActive";
-    private static final String COLUMN_USER_ID = "user_id";
+    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(AccountDaoImpl.class);
+    private static final String ID = "id";
+    private static final String NUMBER = "number";
+    private static final String BALANCE = "balance";
+    private static final String IS_ACTIVE = "isActive";
+    private static final String USER_ID = "user_id";
     @Override
     public void add(Account account) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String sql = "INSERT INTO ACCOUNT (COLUMN_ID, COLUMN_NUMBER, COLUMN_BALANCE, COLUMN_IS_ACTIVE, COLUMN_USER_ID) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ACCOUNT (ID, NUMBER, BALANCE, IS_ACTIVE, USER_ID) VALUES(?, ?, ?, ?, ?)";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, account.getId());
@@ -28,9 +33,9 @@ public class AccountService extends ConnectionManager implements AccountDAO {
             preparedStatement.setBoolean(5, account.isActive());
 
             preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+               throw new DAOException();
+        } catch (DAOException e) {
+            System.out.println(e.getMessage();
         }finally {
             if(preparedStatement != null){
                 preparedStatement.close();
@@ -45,7 +50,7 @@ public class AccountService extends ConnectionManager implements AccountDAO {
     @Override
     public List<Account> getAll() throws SQLException {
         List<Account> accountsList = new ArrayList<>();
-        String sql = "SELECT COLUMN_ID, COLUMN_NUMBER, COLUMN_BALANCE, COLUMN_IS_ACTIVE, COLUMN_USER_ID FROM ACCOUNT ";
+        String sql = "SELECT ID, NUMBER, BALANCE, IS_ACTIVE, USER_ID FROM ACCOUNT ";
         Statement statement = null;
         try {
             statement =  connection.createStatement();
@@ -76,22 +81,22 @@ public class AccountService extends ConnectionManager implements AccountDAO {
     }
 
     @Override
-    public Account getById(Long id) throws SQLException {
+    public Optional<Account> getById(Long id) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String sql = "SELECT COLUMN_ID, COLUMN_NUMBER, COLUMN_BALANCE, COLUMN_IS_ACTIVE, COLUMN_USER_ID FROM ACCOUNT WHERE ID = ? ";
+        String sql = "SELECT ID, NUMBER, BALANCE, IS_ACTIVE, USER_ID FROM ACCOUNT WHERE ID = ? ";
         Account account = new Account();
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            account.setId(resultSet.getLong("COLUMN_ID"));
-            account.setNumber(resultSet.getString("COLUMN_NUMBER"));
-            account.setBalance(resultSet.getBigDecimal("COLUMN_BALANCE"));
-            account.setActive(resultSet.getBoolean("COLUMN_IS_ACTIVE"));
-            account.setUserId(resultSet.getLong("COLUMN_USER_ID"));
+            account.setId(resultSet.getLong("ID"));
+            account.setNumber(resultSet.getString("NUMBER"));
+            account.setBalance(resultSet.getBigDecimal("BALANCE"));
+            account.setActive(resultSet.getBoolean("IS_ACTIVE"));
+            account.setUserId(resultSet.getLong("USER_ID"));
 
-            preparedStatement.executeUpdate();
+            preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -102,13 +107,13 @@ public class AccountService extends ConnectionManager implements AccountDAO {
                 connection.close();
             }
         }
-        return account;
+        return Optional.ofNullable(account);
     }
 
     @Override
     public void update(Account account) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String sql = "UPDATE ACCOUNT SET COLUMN_ID, COLUMN_NUMBER, COLUMN_BALANCE, COLUMN_IS_ACTIVE, COLUMN_USER_ID WHERE ID =?";
+        String sql = "UPDATE ACCOUNT SET ID, NUMBER, BALANCE, IS_ACTIVE, USER_ID WHERE ID =?";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, account.getId());
@@ -153,3 +158,4 @@ public class AccountService extends ConnectionManager implements AccountDAO {
 
     }
 }
+*/

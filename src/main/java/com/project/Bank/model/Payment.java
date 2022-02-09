@@ -1,6 +1,6 @@
 package com.project.Bank.model;
 
-import com.project.Bank.enums.Status;
+import com.project.Bank.model.enums.Status;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,6 +14,9 @@ public class Payment {
     private long creditAccountId;
     private String description;
     private Status status;
+
+    public Payment() {
+    }
 
     public Payment(long id, LocalDateTime date, BigDecimal amount, long debitAccountId, long creditAccountId, String description, Status status) {
         this.id = id;

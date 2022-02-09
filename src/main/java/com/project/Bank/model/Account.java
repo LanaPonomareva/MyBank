@@ -10,6 +10,7 @@ public class Account {
     private long userId;
     private boolean isActive;
 
+
     public Account() {
     }
 
